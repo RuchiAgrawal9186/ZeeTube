@@ -32,7 +32,7 @@ const ButtonList = () => {
     "Thoughts",
   ];
   return (
-    <div className="relative flex items-center bg-white px-4 py-2">
+    <div className="sticky top-0 flex items-center bg-white px-4 py-2">
       {/* Left Arrow */}
       <button
         onClick={() => scroll("left")}
