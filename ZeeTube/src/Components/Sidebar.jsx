@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
@@ -11,7 +12,7 @@ const Sidebar = () => {
     {
       title: "",
       items: [
-        { name: "Home", icon: "" },
+        { name: "Home", icon: "", link: "/" },
         { name: "Shorts", icon: "" },
         { name: "Subscription", icon: "" },
       ],
@@ -34,7 +35,11 @@ const Sidebar = () => {
           <div className="border-b-2">
             <h2>{el?.title}</h2>
             {el?.items?.map((item) => {
-              return <div>{item?.name}</div>;
+              return (
+                <Link to={item?.link}>
+                  <div>{item?.name}</div>
+                </Link>
+              );
             })}
           </div>
         );

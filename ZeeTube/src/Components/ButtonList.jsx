@@ -44,7 +44,7 @@ const ButtonList = () => {
       {/* Scrollable Button List */}
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto gap-2 overflow-x-hidden px-6"
+        className="flex gap-2 overflow-x-hidden px-6"
         style={{ scrollBehavior: "smooth" }}
       >
         {ButtonListData.map((el, index) => (
