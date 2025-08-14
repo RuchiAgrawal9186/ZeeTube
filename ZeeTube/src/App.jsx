@@ -8,12 +8,18 @@ import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./Components/MainContainer";
 import WatchVideoPage from "./Components/WatchVideoPage";
+import SearchResults from "./Components/SearchResults";
 
 function App() {
   const appRouter = createBrowserRouter([
     {
       path: "/",
-      element: <Body></Body>,
+      element: (
+        <>
+          <Header />
+          <Body />
+        </>
+      ),
       children: [
         {
           path: "/",
@@ -23,13 +29,17 @@ function App() {
           path: "/watch",
           element: <WatchVideoPage />,
         },
+        {
+          path: "/results",
+          element: <SearchResults />,
+        },
       ],
     },
   ]);
   return (
     <Provider store={store}>
       <Fragment>
-        <Header></Header>
+        {/* <Header></Header> */}
         <RouterProvider router={appRouter}></RouterProvider>
       </Fragment>
     </Provider>

@@ -11,7 +11,7 @@ const WatchVideoPage = () => {
   const dispatch = useDispatch();
   const [searchParam] = useSearchParams();
   const id = searchParam.get("v");
-  console.log(id);
+ 
   useEffect(() => {
     dispatch(closeMenu());
   }, []);
@@ -24,7 +24,7 @@ const WatchVideoPage = () => {
     const res = await fetch(YOUTUBE_VIDEO_API);
     const data = await res.json();
     console.log(data, "data");
-    setVideosData(data?.items || []);
+    // setVideosData(data?.items || []);
   };
 
   return (

@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../Utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../Utils/constants";
 import { chcheResults } from "../Utils/searchSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestion, setSugesstion] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const searchCache = useSelector((store) => store.search);
 
   const handleToggleMenu = () => {
@@ -47,7 +49,7 @@ searchCache : {
     console.log(data?.items);
     setSugesstion(data?.items || []);
 
-    dispatch(chcheResults({[searchQuery]:data?.items}))
+    dispatch(chcheResults({ [searchQuery]: data?.items }));
   }
   return (
     <div className="grid grid-cols-12 items-center px-4 py-2 shadow-md bg-white gap-4 md:grid-cols-12 sm:grid-cols-6">
@@ -67,8 +69,15 @@ searchCache : {
           <input
             type="text"
             value={searchQuery}
-            onFocus={() => setShowPopup(true)}
-            onBlur={() => setShowPopup(false)}
+            onFocus={(e) => {
+              e.stopPropagation();
+              setShowPopup(true);
+            }}
+            onMouseOut={()=> setShowPopup(false)}
+            // onBlur={(e) => {
+            //   e.stopPropagation();
+            //   setShowPopup(false);
+            // }}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search"
             className="w-full px-4 py-1 border border-gray-300 rounded-l-full focus:outline-none focus:ring-1 focus:ring-blue-500"
@@ -78,21 +87,30 @@ searchCache : {
           </button>
         </div>
         {showPopup && (
-          <div className="fixed bg-white z-20 py-2 border-gray- rounded-b-2xl w-[45rem] px-5 mt-0.5">
-            <ul className="items-center">
-              {suggestion?.slice(0, 10)?.map((item) => {
-                return (
-                  <li
-                    className="flex gap-1 items-center py-1"
+          <div className="fixed bg-white z-[100] py-2 border-gray- rounded-b-2xl w-[45rem] px-5 mt-0.5 shadow-2xl">
+            {/* <ul className="items-center"> */}
+            {suggestion?.slice(0, 10)?.map((item) => {
+              console.log(item, "item ");
+              return (
+                <div
+                  onClick={() => {
+                    navigate(`/results?search_query=${item?.snippet?.title}`);
+                    setShowPopup(false);
+                  }}
+                  key={item?.id?.videoId}
+                >
+                  <h3
+                    className="flex gap-1 items-center py-1 hover:bg-gray-300"
                     key={item?.id?.videoId}
                   >
                     {" "}
                     <IconSearch stroke={2} style={{ height: "17px" }} />
                     <span className="text-1xl">{item?.snippet?.title}</span>
-                  </li>
-                );
-              })}
-            </ul>
+                  </h3>
+                </div>
+              );
+            })}
+            {/* </ul> */}
           </div>
         )}
       </div>
