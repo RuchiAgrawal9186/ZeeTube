@@ -1,20 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IconMenu2, IconSearch, IconUserCircle } from "@tabler/icons-react";
 import logo from "../assets/ZeeTube_Logo.png";
-import {useDispatch} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../Utils/appSlice";
+import { YOUTUBE_SEARCH_API } from "../Utils/constants";
+import { chcheResults } from "../Utils/searchSlice";
 
 const Header = () => {
-  const dispatch = useDispatch()
+  const [searchQuery, setSearchQuery] = useState("");
+  const [suggestion, setSugesstion] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const dispatch = useDispatch();
+  const searchCache = useSelector((store) => store.search);
 
   const handleToggleMenu = () => {
-    dispatch(toggleMenu())
+    dispatch(toggleMenu());
+  };
+
+  /*
+
+searchCache : {
+  iphone: [iphone1 ,iphone2]
+  }
+
+
+  */
+
+  // debouncing search api
+  useEffect(() => {
+    let timerId = setTimeout(() => {
+      if (searchCache[searchQuery]) {
+        setSugesstion(searchCache[searchQuery]);
+      } else {
+        getSearchVideo();
+      }
+    }, 200);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchQuery]);
+
+  async function getSearchVideo() {
+    let res = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    let data = await res.json();
+    console.log(data?.items);
+    setSugesstion(data?.items || []);
+
+    dispatch(chcheResults({[searchQuery]:data?.items}))
   }
   return (
     <div className="grid grid-cols-12 items-center px-4 py-2 shadow-md bg-white gap-4 md:grid-cols-12 sm:grid-cols-6">
       {/* Left: Menu + Logo (col-span-3) */}
       <div className="col-span-3 flex items-center gap-3">
-        <IconMenu2 stroke={2} className="w-6 h-6 cursor-pointer" onClick={handleToggleMenu} />
+        <IconMenu2
+          stroke={2}
+          className="w-6 h-6 cursor-pointer"
+          onClick={handleToggleMenu}
+        />
         <img src={logo} alt="ZeeTube" className="h-8 w-auto" />
       </div>
 
@@ -23,6 +66,10 @@ const Header = () => {
         <div className="flex w-full">
           <input
             type="text"
+            value={searchQuery}
+            onFocus={() => setShowPopup(true)}
+            onBlur={() => setShowPopup(false)}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search"
             className="w-full px-4 py-1 border border-gray-300 rounded-l-full focus:outline-none focus:ring-1 focus:ring-blue-500"
           />
@@ -30,6 +77,24 @@ const Header = () => {
             <IconSearch stroke={2} />
           </button>
         </div>
+        {showPopup && (
+          <div className="fixed bg-white z-20 py-2 border-gray- rounded-b-2xl w-[45rem] px-5 mt-0.5">
+            <ul className="items-center">
+              {suggestion?.slice(0, 10)?.map((item) => {
+                return (
+                  <li
+                    className="flex gap-1 items-center py-1"
+                    key={item?.id?.videoId}
+                  >
+                    {" "}
+                    <IconSearch stroke={2} style={{ height: "17px" }} />
+                    <span className="text-1xl">{item?.snippet?.title}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
       </div>
 
       {/* Right: User Icon (col-span-3) */}
