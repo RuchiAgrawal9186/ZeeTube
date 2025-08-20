@@ -25,7 +25,6 @@ searchCache : {
   iphone: [iphone1 ,iphone2]
   }
 
-
   */
 
   // debouncing search api
