@@ -45,7 +45,7 @@ searchCache : {
   async function getSearchVideo() {
     let res = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     let data = await res.json();
-    console.log(data?.items);
+    console.log(data?.items,"data");
     setSugesstion(data?.items || []);
 
     dispatch(chcheResults({ [searchQuery]: data?.items }));

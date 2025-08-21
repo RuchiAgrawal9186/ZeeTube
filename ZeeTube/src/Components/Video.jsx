@@ -1,7 +1,6 @@
 import React from "react";
 
 const Video = ({ id }) => {
-    console.log(id,"id in page")
   return (
    
       <iframe

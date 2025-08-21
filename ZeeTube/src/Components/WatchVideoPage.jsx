@@ -28,18 +28,18 @@ const WatchVideoPage = () => {
   };
 
   return (
-    <div className="w-[87%] mx-auto px-4">
+    <div className="w-full overflow-auto  px-2">
       <div className="flex flex-col lg:flex-row gap-4 py-4">
         {/* Left Section: Video + Comments */}
-        <div className="w-full lg:w-3/4 flex flex-col gap-4">
+        <div className="w-1/2 lg:w-3/4 flex flex-col gap-4 mx-auto">
           {/* Video Player */}
           <div className="w-full aspect-video bg-black rounded-lg">
             <Video id={id} />
           </div>
 
           {/* Comments */}
-          <div className="w-full">
-            <Comments />
+          <div className="w-full ">
+            <Comments id={id}/>
           </div>
         </div>
 
