@@ -8,4 +8,6 @@ export const YOUTUBE_SEARCH_API =
 
 export const YOUTUBE_VIDEO_DETAILS_API = `GET https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&key=${API_KEY}&videoId=`;
 
-export const YOUTUBE_COMMENTS_API=`https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&key=${API_KEY}&videoId=`;
+export const YOUTUBE_COMMENTS_API = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&key=${API_KEY}&videoId=`;
+
+export const RELEATED_VIDEO_API = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${API_KEY}&relatedToVideoId=VIDEO_ID&type=video`;

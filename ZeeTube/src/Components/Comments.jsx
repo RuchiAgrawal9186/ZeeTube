@@ -12,7 +12,7 @@ const [comments,setComments]=useState([])
     const getVidoes = async () => {
       const res = await fetch(YOUTUBE_COMMENTS_API+id);
       const data = await res.json();
-console.log(data?.items)
+
       setComments(data?.items || []);
     };
   return (
