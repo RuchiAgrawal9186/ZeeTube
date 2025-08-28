@@ -51,7 +51,7 @@ searchCache : {
     dispatch(chcheResults({ [searchQuery]: data?.items }));
   }
   return (
-    <div className="grid grid-cols-12 items-center px-4 py-2 shadow-md bg-white gap-4 md:grid-cols-12 sm:grid-cols-6">
+    <div className="grid grid-cols-12 items-center px-4 py-2 shadow-md bg-white gap-4 md:grid-cols-12 sm:grid-cols-6 ">
       {/* Left: Menu + Logo (col-span-3) */}
       <div className="col-span-3 flex items-center gap-3">
         <IconMenu2
@@ -72,7 +72,7 @@ searchCache : {
               e.stopPropagation();
               setShowPopup(true);
             }}
-            onMouseOut={()=> setShowPopup(false)}
+            // onMouseOut={()=> setShowPopup(false)}
             // onBlur={(e) => {
             //   e.stopPropagation();
             //   setShowPopup(false);

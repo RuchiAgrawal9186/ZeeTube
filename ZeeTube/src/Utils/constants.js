@@ -1,13 +1,10 @@
 const API_KEY = import.meta.env.VITE_YOUR_API_KEY;
 export const YOUTUBE_VIDEOS_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=${API_KEY} `;
 export const YOUTUBE_VIDEO_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=${API_KEY}`;
-// export const YOUTUBE_SEARCH_API = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=${API_KEY}&q=`;
-
-export const YOUTUBE_SEARCH_API =
-  "https://serpapi.com/search.json?engine=youtube&search_query=";
-
+export const YOUTUBE_SEARCH_API = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=${API_KEY}&q=`;
+// export const YOUTUBE_SEARCH_API ="https://serpapi.com/search.json?engine=youtube&search_query=";
 export const YOUTUBE_VIDEO_DETAILS_API = `GET https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&key=${API_KEY}&videoId=`;
-
 export const YOUTUBE_COMMENTS_API = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&key=${API_KEY}&videoId=`;
-
 export const RELEATED_VIDEO_API = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${API_KEY}&relatedToVideoId=VIDEO_ID&type=video`;
+export const YOUTUBE_SUGGESTED_VIDEO_API = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=15&key=${API_KEY}&relatedToVideoId=`;
+export const YOUTUBE_SERACH_QUERY_API = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&key=${API_KEY}&q=`;

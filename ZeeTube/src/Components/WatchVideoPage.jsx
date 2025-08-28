@@ -24,12 +24,11 @@ const WatchVideoPage = () => {
   const getVideoDetails = async () => {
     const res = await fetch(YOUTUBE_VIDEO_API);
     const data = await res.json();
-    console.log(data, "data");
     // setVideosData(data?.items || []);
   };
 
   return (
-    <div className="w-full overflow-auto   px-20">
+    <div className="w-full overflow-auto   px-0">
       <div className="flex flex-col lg:flex-row gap-4 py-4">
         {/* Left Section: Video + Comments */}
         <div className="w-full lg:w-[66%] flex flex-col gap-4 mx-auto">
@@ -45,9 +44,9 @@ const WatchVideoPage = () => {
         </div>
 
         {/* Right Section: Suggested Videos */}
-        <div className="w-full lg:w-[30%]">
+        <div className="w-full lg:w-[30%] mr-5">
           <LiveChat />
-          <SuggestedVideo />
+          <SuggestedVideo id={id}/>
         </div>
       </div>
     </div>
