@@ -28,7 +28,7 @@ const WatchVideoPage = () => {
   };
 
   return (
-    <div className="w-full overflow-auto   px-0">
+    <div className="w-full overflow-auto   px-2">
       <div className="flex flex-col lg:flex-row gap-4 py-4">
         {/* Left Section: Video + Comments */}
         <div className="w-full lg:w-[66%] flex flex-col gap-4 mx-auto">
@@ -37,16 +37,20 @@ const WatchVideoPage = () => {
             <Video id={id} />
           </div>
 
+          <div className="w-full order-2 lg:hidden">
+            <LiveChat />
+          </div>
+
           {/* Comments */}
-          <div className="w-full ">
+          <div className="w-full order-3">
             <Comments id={id} />
           </div>
         </div>
 
         {/* Right Section: Suggested Videos */}
-        <div className="w-full lg:w-[30%] mr-5">
+        <div className="w-full lg:w-[30%] mr-5 hidden lg:flex flex-col gap-0">
           <LiveChat />
-          <SuggestedVideo id={id}/>
+          <SuggestedVideo id={id} />
         </div>
       </div>
     </div>
