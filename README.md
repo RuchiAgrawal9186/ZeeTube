@@ -67,12 +67,13 @@ Dark mode support
 3. Search Results
 ![alt text](image-3.png)
 
-# 🙌 Acknowledgements
+## 🙌 Acknowledgements
 
+```
 YouTube Data API v3
 React
 TailwindCSS
-
+```
 # 🧑‍💻 Author
 
 ZeeTube is built with ❤️ by Ruchi Agrawal.
