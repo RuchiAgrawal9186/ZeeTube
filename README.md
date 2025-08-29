@@ -37,14 +37,16 @@ VITE_YOUTUBE_API_KEY=your_api_key_here
 4️⃣ Run the dev server
 npm run dev
 
-📂 Project Structure
+## 📂 Project Structure
 
+```
 ZeeTube/
 ├── src/
 │   ├── components/     # Reusable UI components (VideoCard, Comment, Sidebar, etc.)
 │   ├── pages/          # Page-level components (Home, Watch, SearchResults)
 │   ├── utils/          # Helper functions (API calls, debouncing, random generator)
 │   └── App.jsx         # Main app entry
+```
 
 
 # 🔮 Future Enhancements
@@ -63,6 +65,7 @@ Dark mode support
 ![alt text](image-2.png)
 
 3. Search Results
+![alt text](image-3.png)
 
 # 🙌 Acknowledgements
 
@@ -73,4 +76,5 @@ TailwindCSS
 # 🧑‍💻 Author
 
 ZeeTube is built with ❤️ by Ruchi Agrawal.
+
 Feel free to fork, contribute, or give this project a ⭐ on GitHub!
