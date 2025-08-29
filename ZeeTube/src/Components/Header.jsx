@@ -46,7 +46,6 @@ searchCache : {
     setSugesstion(data?.items || []);
 
     dispatch(chcheResults({ [searchQuery]: data?.items }));
-   
   }
   return (
     <Fragment>
@@ -98,7 +97,7 @@ searchCache : {
                           `/results?search_query=${item?.snippet?.title}`
                         );
                         setShowPopup(false);
-                         setSearchQuery("");
+                        setSearchQuery("");
                       }}
                       key={item?.id?.videoId}
                     >
